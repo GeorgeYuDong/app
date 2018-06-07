@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <locale.h>
 #include <wchar.h>
+
 using namespace std;
 
 int main(int argc, char const *argv[])
