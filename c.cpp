@@ -2,7 +2,7 @@
 #include <locale.h>
 #include <wchar.h>
 
-using namespace std;
+//using namespace std;
 
 int main(int argc, char const *argv[])
 {
@@ -316,6 +316,35 @@ int main(int argc, char const *argv[])
 	printf("%p\n",&M20);
 
 	printf("%#x\n",&M20 );
+
+    //宽字符串,宽字符，在微软平台，相当于unsigned short-2字节
+	//在Linux,GCC,Clang下长度为4，相当于unsigned int-4字节
+	wchar_t web_urll[] = L"http://baidu.com";
+    wchar_t web_name[] = L"C百度";
+    setlocale(LC_ALL,"zh-CN");
+	//使用通用的 wprintf 输出宽字符
+	wprintf(L"web_url:%ls\nweb_name:%ls\n", web_urll,web_name);
+
+	//将不加L前缀的字符称为窄字符，将加上L前缀的字符称为宽字符。
+	//窄字符使用 ASCII 编码，宽字符使用 UTF-16 或者 UTF-32 编码
+	//putchar、printf 只能输出不加L前缀的窄字符，对加了L前缀的宽字符无能为力，
+    // 我们必须使用 <wchar.h> 头文件中的宽字符输出函数，它们分别是 putwchar 和 wprintf
+	//locale.h,setlocale(LC_ALL,"zh-CN")-window.
+	//setlocale(LC_ALL,"zh_CN")-linux,mac
+
+	//在C语言中，只有 char 类型的窄字符才使用 ASCII 编码
+	//char 类型的窄字符串、wchar_t 类型的宽字符和宽字符串都不使用 ASCII 编码！
+	//在现代计算机中，窄字符串已经不再使用 ASCII 编码了，因为 ASCII 编码只能显示字母、数字等英文字符，对汉语、日语、韩语等其它地区的字符无能为力。
+	//wchar_t 类型的宽字符和宽字符串使用 UTF-16 或者 UTF-32 编码
+	//
+
+
+
+
+
+
+
+
 
 	//
 
